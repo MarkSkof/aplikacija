@@ -196,6 +196,24 @@ def todo_detail(request, id):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+@api_view(['GET'])
+def user_posts(request, id):
+    posts = Post.objects.filter(userId=id)
+    serializer = PostSerializer(posts, many=True)
+    return JsonResponse(serializer.data, safe=False)
+
+
+
+@api_view(['GET'])
+def post_comments(request, id):
+    try:
+        post = Post.objects.get(id=id)
+    except Post.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    comments = Comment.objects.filter(postId=id)
+    post_serializer = PostSerializer(post)
+    comment_serializer = CommentSerializer(comments, many=True)
+    return JsonResponse({'post': post_serializer.data, 'comments': comment_serializer.data})
 
 
 
