@@ -4,13 +4,11 @@
 # Instalation
 
 To install the application run below commands in terminal:
-
-> git clone https://github.com/MarkSkof/aplikacija
->
-> cd aplikacija 
-> 
-> docker-compose up -d
-
+```shell
+git clone https://github.com/MarkSkof/aplikacija
+cd aplikacija 
+docker-compose up -d
+```
 # Usage
 
 ## Populating database with data
